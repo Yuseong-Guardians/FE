@@ -1,0 +1,66 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "concurrently \"npm run react:start\" \"npm run electron:start\"",
+    "pack": "electron-builder",
+    "react:start": "react-scripts start",
+    "electron:start": "wait-on http://localhost:3000 && mode=dev electron .",
+    "react:build": "react-scripts build",
+    "build": "npm run react:build && electron-builder --publish=always"
+  },
+  "build": {
+    "appId": "com.example.electron-app",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "electron": "^33.0.2",
+    "electron-builder": "^25.1.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.9.5",
+    "wait-on": "^8.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@types/history": "^5.0.0",
+    "@types/react-router": "^5.1.20",
+    "history": "^5.3.0",
+    "react-router": "^6.27.0",
+    "styled-components": "^6.1.13",
+    "zustand": "^5.0.0"
+  }
+}
