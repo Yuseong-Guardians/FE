@@ -10,7 +10,7 @@ export const FirstCard = () => {
     <Wrapper
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => navigate("/war")}
+      onClick={() => navigate("/newComer")}
     >
       <span>참전 명예</span>
       <img src={isHovered ? AfterMainCard1 : MainCard1} alt="" />

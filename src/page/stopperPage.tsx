@@ -1,13 +1,11 @@
 import { Header } from "components/war/header";
-import { NewInfo } from "components/war/newInfo";
-import { BaseTable } from "components/war/baseTable";
 import React from "react";
 import styled from "styled-components";
 
-export const WarPage = () => {
+export const StopperPage = () => {
   return (
     <Container>
-      <Header isWar={true} isStopper={false} />
+      <Header isStopper={true} isWar={false} />
       <div
         style={{
           width: "100%",
@@ -19,16 +17,9 @@ export const WarPage = () => {
           fontWeight: "400",
           padding: "14px",
           zIndex: "1",
-        }}>참전 명예 수당 지급 신규자</div>
-      <div style={{ display: "flex" }}>
-        <NewInfo />
-        <BaseTable />
-      </div>
+        }}>참전 명예 수당 지급 중지자</div>
     </Container>
   );
 };
 
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
+const Container = styled.div``;

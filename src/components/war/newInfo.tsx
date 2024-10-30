@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useInfoStore } from "store/useInfoStore";
 import styled from "styled-components";
 
@@ -89,71 +89,78 @@ const bankCategory = [
   { code: "99", name: "현금" },
 ];
 
+
 export const NewInfo = () => {
   const {
     selectedBank,
     selectedLocation,
     selectedBankCategory,
-    bohunNumber,
-    residentNumber,
-    address1,
-    address2,
-    depositor,
+    bohoonNumber,
+    juminNumber,
+    basicAddress,
+    detailedAddress,
+    accountHolder,
     accountNumber,
     reason,
     entryDate,
-    note,
+    remarks,
     setField,
+    addNewInfo
   } = useInfoStore();
 
   return (
     <Container>
       <Header>
-        <p>
-          신규자 정보
-        </p>
-        <AddButton>추가하기</AddButton>
+        <p>신규자 정보</p>
+        <AddButton onClick={addNewInfo}>추가하기</AddButton>
       </Header>
       <Table>
         <tbody>
           <Row>
             <Label>동명</Label>
-            <Dropdown value={selectedLocation} onChange={(e) => setSelectedLocation(e.target.value)}>
+            <Dropdown
+              value={selectedLocation}
+              onChange={(e) => setField("selectedLocation", e.target.value)}
+            >
               <option value="" disabled>동명을 선택하세요</option>
-              {location.map((location) => (
-                <option value={location.name} key={location.name}>{location.name}</option>
+              {location.map((loc) => (
+                <option value={loc.name} key={loc.name}>{loc.name}</option>
               ))}
             </Dropdown>
           </Row>
-          <Row><Label>보훈번호</Label><Value placeholder="보훈번호를 입력하세요." /></Row>
-          <Row><Label>주민번호</Label><Value placeholder="주민번호를 입력하세요." /></Row>
-          <Row><Label>기본 주소</Label><Value placeholder="기본 주소를 입력하세요." /></Row>
-          <Row><Label>상세 주소</Label><Value placeholder="상세 주소를 입력하세요." /></Row>
+          <Row><Label>보훈번호</Label><Value value={bohoonNumber} placeholder="보훈번호를 입력하세요." onChange={(e) => setField("bohoonNumber", e.target.value)} /></Row>
+          <Row><Label>주민번호</Label><Value value={juminNumber} placeholder="주민번호를 입력하세요." onChange={(e) => setField("juminNumber", e.target.value)} /></Row>
+          <Row><Label>기본 주소</Label><Value value={basicAddress} placeholder="기본 주소를 입력하세요." onChange={(e) => setField("basicAddress", e.target.value)} /></Row>
+          <Row><Label>상세 주소</Label><Value value={detailedAddress} placeholder="상세 주소를 입력하세요." onChange={(e) => setField("detailedAddress", e.target.value)} /></Row>
           <Row>
             <Label>입금유형</Label>
-            <Dropdown value={selectedBankCategory} onChange={(e) => setSelectedBankCategory(e.target.value)}>
+            <Dropdown
+              value={selectedBankCategory}
+              onChange={(e) => setField("selectedBankCategory", e.target.value)}
+            >
               <option value="" disabled>입금유형을 선택하세요</option>
-              {bankCategory.map((gory) => (
-                <option value={gory.code} key={gory.code}>{gory.code}: {gory.name}</option>
+              {bankCategory.map((category) => (
+                <option value={category.code} key={category.code}>{category.name}</option>
               ))}
             </Dropdown>
           </Row>
           <Row>
             <Label>은행명</Label>
-            <Dropdown value={selectedBank} onChange={(e) => setSelectedBank(e.target.value)}>
+            <Dropdown
+              value={selectedBank}
+              onChange={(e) => setField("selectedBank", e.target.value)}
+            >
               <option value="" disabled>은행을 선택하세요</option>
               {banks.map((bank) => (
-                <option key={bank.code} value={bank.code}>
-                  {bank.code}: {bank.name}
-                </option>
+                <option value={bank.code} key={bank.code}>{bank.name}</option>
               ))}
             </Dropdown>
           </Row>
-          <Row><Label>예금주</Label><Value placeholder="예금주를 입력하세요." /></Row>
-          <Row><Label>계좌번호</Label><Value placeholder="계좌번호를 입력하세요." /></Row>
-          <Row><Label>신규 사유</Label><Value placeholder="신규 사유를 입력하세요." /></Row>
-          <Row><Label>전입일</Label><Value placeholder="전입일을 입력하세요." /></Row>
-          <Row style={{ height: "100px" }}><Label>비고</Label><Value placeholder="자유롭게 입력" /></Row>
+          <Row><Label>예금주</Label><Value value={accountHolder} placeholder="예금주를 입력하세요." onChange={(e) => setField("accountHolder", e.target.value)} /></Row>
+          <Row><Label>계좌번호</Label><Value value={accountNumber} placeholder="계좌번호를 입력하세요. (예: 7777021234567)" onChange={(e) => setField("accountNumber", e.target.value)} /></Row>
+          <Row><Label>신규 사유</Label><Value value={reason} placeholder="신규 사유를 입력하세요." onChange={(e) => setField("reason", e.target.value)} /></Row>
+          <Row><Label>전입일</Label><Value value={entryDate} placeholder="YYYYMMYY 형식으로 입력하세요" onChange={(e) => setField("entryDate", e.target.value)} /></Row>
+          <Row style={{ height: "100px" }}><Label>비고</Label><Value value={remarks} placeholder="자유롭게 입력하세요" onChange={(e) => setField("remarks", e.target.value)} /></Row>
         </tbody>
       </Table>
     </Container>
@@ -209,7 +216,7 @@ const Label = styled.td`
 
 const Value = styled.input`
   padding: 10px;
-  width: 70%;
+  width: 100%;
   border: none;
   background-color: #fff;
   font-size: 14px;
