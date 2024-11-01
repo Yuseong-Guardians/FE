@@ -1,4 +1,5 @@
 import { Header } from "components/war/header";
+import { StopperInfo } from "components/war/stopperInfo";
 import React from "react";
 import styled from "styled-components";
 
@@ -18,6 +19,7 @@ export const StopperPage = () => {
           padding: "14px",
           zIndex: "1",
         }}>참전 명예 수당 지급 중지자</div>
+      <StopperInfo />
     </Container>
   );
 };

@@ -73,7 +73,7 @@ textarea {
 body {
     color: black;
     font-family: Pretendard;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.2
 }
 
