@@ -19,15 +19,55 @@ export const StopperInfo = () => {
             <img src={CloseIcon} alt="" />
           </div>
         </SearchResult>
+        <Table>
+          <TableRow>
+            <TableHeader>동명</TableHeader>
+            <TableData>노은 1동</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>성명</TableHeader>
+            <TableData>김노은</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>주민번호</TableHeader>
+            <TableData>000000 - 0000000</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>기본 주소</TableHeader>
+            <TableData>소</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>상세 주소</TableHeader>
+            <TableData>주소</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>전입일</TableHeader>
+            <TableData>2024.08.03</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>중단사유</TableHeader>
+            <TableData>스테테</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader>사유일시</TableHeader>
+            <TableData>2001228</TableData>
+          </TableRow>
+          <TableRow>
+            <TableHeader style={{ height: "100px" }}>비고</TableHeader>
+            <TableData>2001228</TableData>
+          </TableRow>
+        </Table>
       </MainWrapper>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 30%;
+  width: 37%;
   height: 100vh;
   background-color: #f6f6f6;
+  border: 1px solid #B2B2B2;
+  border-top-right-radius: 20px;
 `;
 
 
@@ -68,4 +108,36 @@ const SearchResult = styled.div`
     justify-content: center;
     gap: 5px;
   }
+  & > div > img {
+    cursor: pointer;
+  }
+`;
+
+const Table = styled.div`
+  width: 100%;
+  max-width: 600px;
+  border-collapse: collapse;
+  font-size: 16px;
+  color: #333;
+`;
+
+const TableRow = styled.div`
+  display: flex;
+  border: 1px solid #ddd;
+`;
+
+const TableHeader = styled.div`
+  width: 20%;
+  background-color: #f4f4f4;
+  color: #333;
+  background-color: #ECECEC;
+  padding: 13px;
+  text-align: left;
+  border-right: 1px solid #ddd;
+`;
+
+const TableData = styled.div`
+  flex: 1;
+  padding: 15px;
+  text-align: left;
 `;

@@ -64,11 +64,10 @@ export const BaseTable = () => {
   );
 };
 
-// 스타일 정의
 const TableContainer = styled.div`
   width: 100%;
-  max-height: 90vh;  /* 테이블 높이 고정 */
-  overflow-y: auto;   /* 세로 스크롤 추가 */
+  max-height: 90vh;
+  overflow-y: auto;
   border: 1px solid #dadada;
 `;
 

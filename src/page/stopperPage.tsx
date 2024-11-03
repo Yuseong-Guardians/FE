@@ -1,5 +1,6 @@
 import { Header } from "components/war/header";
 import { StopperInfo } from "components/war/stopperInfo";
+import { BaseTable } from "components/war/baseTable";
 import React from "react";
 import styled from "styled-components";
 
@@ -10,7 +11,6 @@ export const StopperPage = () => {
       <div
         style={{
           width: "100%",
-          border: "1px solid #dadada",
           height: "50px",
           backgroundColor: "#ffffff",
           color: "#000",
@@ -19,7 +19,10 @@ export const StopperPage = () => {
           padding: "14px",
           zIndex: "1",
         }}>참전 명예 수당 지급 중지자</div>
-      <StopperInfo />
+      <div style={{ display: "flex" }}>
+        <StopperInfo />
+        <BaseTable />
+      </div>
     </Container>
   );
 };
