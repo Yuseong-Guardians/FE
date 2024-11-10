@@ -3,8 +3,13 @@ import { NewInfo } from "components/war/newInfo";
 import { BaseTable } from "components/war/baseTable";
 import React from "react";
 import styled from "styled-components";
+import { toast } from "react-toastify";
 
 export const WarPage = () => {
+  const handleChildClick = () => {
+    toast("hihiih");
+
+  };
   return (
     <Container>
       <Header isWar={true} isStopper={false} />
@@ -21,7 +26,7 @@ export const WarPage = () => {
           zIndex: "1",
         }}>참전 명예 수당 지급 신규자</div>
       <div style={{ display: "flex" }}>
-        <NewInfo />
+        <NewInfo handleChildClick={handleChildClick} />
         <BaseTable />
       </div>
     </Container>

@@ -1,11 +1,12 @@
 import { create, StateCreator } from "zustand";
-import { devtools } from "zustand/middleware"; // Devtools 불러오기
+import { devtools } from "zustand/middleware";
 
 type InfoState = {
   selectedBank: string | number;
   selectedLocation: string;
   selectedBankCategory: string;
   bohoonNumber: string;
+  nameValue: string;
   juminNumber: string | number;
   basicAddress: string;
   detailedAddress: string;
@@ -23,6 +24,7 @@ const createInfoStore: StateCreator<InfoState> = (set) => ({
   selectedLocation: "",
   selectedBankCategory: "",
   bohoonNumber: "",
+  nameValue: "",
   juminNumber: "",
   basicAddress: "",
   detailedAddress: "",
@@ -40,6 +42,7 @@ const createInfoStore: StateCreator<InfoState> = (set) => ({
       selectedLocation: "",
       selectedBankCategory: "",
       bohoonNumber: "",
+      nameValue: "",
       juminNumber: "",
       basicAddress: "",
       detailedAddress: "",

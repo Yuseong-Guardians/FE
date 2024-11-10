@@ -80,22 +80,22 @@ const location = [
 ];
 
 const bankCategory = [
-  { code: "10", name: "계좌이체" },
-  { code: "20", name: "대량이체" },
-  { code: "30", name: "원천징수" },
-  { code: "40", name: "고지서" },
-  { code: "50", name: "CMS" },
-  { code: "60", name: "수표" },
-  { code: "99", name: "현금" },
+  { key: "1", name: "10: 계좌이체" },
+  { key: "2", name: "20: 대량이체" },
+  { key: "3", name: "30: 원천징수" },
+  { key: "4", name: "40: 고지서" },
+  { key: "5", name: "50: CMS" },
+  { key: "6", name: "60: 수표" },
+  { key: "7", name: "99: 현금" },
 ];
 
-
-export const NewInfo = () => {
+export const NewInfo = ({ handleChildClick }) => {
   const {
     selectedBank,
     selectedLocation,
     selectedBankCategory,
     bohoonNumber,
+    nameValue,
     juminNumber,
     basicAddress,
     detailedAddress,
@@ -108,11 +108,17 @@ export const NewInfo = () => {
     addNewInfo
   } = useInfoStore();
 
+  const logInfoState = () => {
+    const { addNewInfo, setField, ...infoState } = useInfoStore.getState();
+    console.log(infoState);
+    handleChildClick();
+  };
+
   return (
     <Container>
       <Header>
         <p>신규자 정보</p>
-        <AddButton onClick={addNewInfo}>추가하기</AddButton>
+        <AddButton onClick={logInfoState}>추가하기</AddButton>
       </Header>
       <Table>
         <tbody>
@@ -129,6 +135,7 @@ export const NewInfo = () => {
             </Dropdown>
           </Row>
           <Row><Label>보훈번호</Label><Value value={bohoonNumber} placeholder="보훈번호를 입력하세요." onChange={(e) => setField("bohoonNumber", e.target.value)} /></Row>
+          <Row><Label>성명</Label><Value value={nameValue} placeholder="이름 입력하세요." onChange={(e) => setField("nameValue", e.target.value)} /></Row>
           <Row><Label>주민번호</Label><Value value={juminNumber} placeholder="주민번호를 입력하세요." onChange={(e) => setField("juminNumber", e.target.value)} /></Row>
           <Row><Label>기본 주소</Label><Value value={basicAddress} placeholder="기본 주소를 입력하세요." onChange={(e) => setField("basicAddress", e.target.value)} /></Row>
           <Row><Label>상세 주소</Label><Value value={detailedAddress} placeholder="상세 주소를 입력하세요." onChange={(e) => setField("detailedAddress", e.target.value)} /></Row>
@@ -140,7 +147,7 @@ export const NewInfo = () => {
             >
               <option value="" disabled>입금유형을 선택하세요</option>
               {bankCategory.map((category) => (
-                <option value={category.code} key={category.code}>{category.name}</option>
+                <option value={category.name} key={category.key}>{category.name}</option>
               ))}
             </Dropdown>
           </Row>
@@ -152,7 +159,7 @@ export const NewInfo = () => {
             >
               <option value="" disabled>은행을 선택하세요</option>
               {banks.map((bank) => (
-                <option value={bank.code} key={bank.code}>{bank.name}</option>
+                <option value={bank.code} key={bank.code}>{bank.code}: {bank.name}</option>
               ))}
             </Dropdown>
           </Row>
@@ -163,7 +170,7 @@ export const NewInfo = () => {
           <Row style={{ height: "100px" }}><Label>비고</Label><Value value={remarks} placeholder="자유롭게 입력하세요" onChange={(e) => setField("remarks", e.target.value)} /></Row>
         </tbody>
       </Table>
-    </Container>
+    </Container >
   );
 };
 

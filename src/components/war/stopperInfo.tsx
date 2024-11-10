@@ -67,7 +67,8 @@ const Container = styled.div`
   height: 100vh;
   background-color: #f6f6f6;
   border: 1px solid #B2B2B2;
-  border-top-right-radius: 20px;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 `;
 
 
@@ -119,6 +120,7 @@ const Table = styled.div`
   border-collapse: collapse;
   font-size: 16px;
   color: #333;
+  background-color: #f6f6f6;
 `;
 
 const TableRow = styled.div`
