@@ -8,6 +8,7 @@
     "start": "concurrently \"npm run react:start\" \"npm run electron:start\"",
     "pack": "electron-builder",
     "react:start": "react-scripts start",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "electron:start": "wait-on http://localhost:3000 && mode=dev electron .",
     "react:build": "react-scripts build",
     "build": "npm run react:build && electron-builder --publish=always"
@@ -33,9 +34,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@tanstack/react-query-devtools": "^5.59.20",
+    "@typescript-eslint/parser": "^7.18.0",
     "concurrently": "^9.0.1",
     "electron": "^33.0.2",
     "electron-builder": "^25.1.8",
+    "globals": "^15.12.0",
+    "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
@@ -56,11 +62,13 @@
     ]
   },
   "dependencies": {
+    "@emotion/css": "^11.13.4",
     "@tanstack/react-query": "^5.59.20",
     "@types/history": "^5.0.0",
     "@types/react-router": "^5.1.20",
     "axios": "^1.7.7",
     "history": "^5.3.0",
+    "react-hook-form": "^7.53.2",
     "react-router": "^6.27.0",
     "react-toastify": "^10.0.6",
     "styled-components": "^6.1.13",

@@ -1,66 +1,67 @@
-import React from "react";
-import { useInfoStore } from "store/useInfoStore";
+import { HonorRegistrationRequest, usePostHonorRegistration } from "apis";
+import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const banks = [
-  { code: "001", name: "한국은행" },
-  { code: "002", name: "산업은행" },
-  { code: "003", name: "기업은행" },
-  { code: "004", name: "국민은행" },
-  { code: "007", name: "수협은행" },
-  { code: "008", name: "수출입은행" },
-  { code: "011", name: "농협은행" },
-  { code: "020", name: "우리은행" },
-  { code: "023", name: "SC제일은행" },
-  { code: "027", name: "한국씨티은행" },
-  { code: "031", name: "대구은행" },
-  { code: "032", name: "부산은행" },
-  { code: "034", name: "광주은행" },
-  { code: "035", name: "제주은행" },
-  { code: "037", name: "전북은행" },
-  { code: "039", name: "경남은행" },
-  { code: "045", name: "새마을금고중앙회" },
-  { code: "048", name: "신협" },
-  { code: "050", name: "상호저축은행" },
-  { code: "051", name: "기타 외국계 은행(중국 교통은행 등)" },
-  { code: "052", name: "모간스탠리은행" },
-  { code: "054", name: "HSBC은행" },
-  { code: "055", name: "도이치은행" },
-  { code: "057", name: "제이피모간체이스은행" },
-  { code: "058", name: "미스호은행" },
-  { code: "059", name: "미쓰비도쿄UFJ은행" },
-  { code: "060", name: "BOA은행" },
-  { code: "061", name: "비엔피파리바은행" },
-  { code: "062", name: "중국공상은행" },
-  { code: "063", name: "중국은행" },
-  { code: "064", name: "산립조합중앙회" },
-  { code: "065", name: "대화은행" },
-  { code: "067", name: "중국건설은행" },
-  { code: "071", name: "우체국" },
-  { code: "076", name: "신용보증기금" },
-  { code: "077", name: "신용보증기금" },
-  { code: "081", name: "KEB하나은행" },
-  { code: "088", name: "신한은행" },
-  { code: "089", name: "케이뱅크" },
-  { code: "090", name: "카카오뱅크" },
-  { code: "092", name: "토스뱅크" },
-  { code: "093", name: "한국주택금융공사" },
-  { code: "094", name: "서울보증보험" },
-  { code: "209", name: "유안타증권" },
-  { code: "218", name: "KB증권" },
-  { code: "221", name: "상상인증권" },
-  { code: "223", name: "리딩투자증권" },
-  { code: "271", name: "토스증권" },
-  { code: "278", name: "신한금융투자" },
-  { code: "279", name: "DB금융투자" },
-  { code: "280", name: "유진투자증권" },
-  { code: "287", name: "메리츠종합금융증권" },
-  { code: "288", name: "카카오페이증권" },
-  { code: "289", name: "NH투자증권" },
-  { code: "290", name: "부국증권" },
-  { code: "291", name: "신영증권" },
-  { code: "292", name: "케이프투자증권" },
-  { code: "294", name: "한국포스증권" },
+  { key: "1", name: "001: 한국은행" },
+  { key: "2", name: "002: 산업은행" },
+  { key: "3", name: "003: 기업은행" },
+  { key: "4", name: "004: 국민은행" },
+  { key: "5", name: "007: 수협은행" },
+  { key: "6", name: "008: 수출입은행" },
+  { key: "7", name: "011: 농협은행" },
+  { key: "8", name: "020: 우리은행" },
+  { key: "9", name: "023: SC제일은행" },
+  { key: "10", name: "027: 한국씨티은행" },
+  { key: "11", name: "031: 대구은행" },
+  { key: "12", name: "032: 부산은행" },
+  { key: "13", name: "034: 광주은행" },
+  { key: "14", name: "035: 제주은행" },
+  { key: "15", name: "037: 전북은행" },
+  { key: "16", name: "039: 경남은행" },
+  { key: "17", name: "045: 새마을금고중앙회" },
+  { key: "18", name: "048: 신협" },
+  { key: "19", name: "050: 상호저축은행" },
+  { key: "20", name: "051: 기타 외국계 은행(중국 교통은행 등)" },
+  { key: "21", name: "052: 모간스탠리은행" },
+  { key: "22", name: "054: HSBC은행" },
+  { key: "23", name: "055: 도이치은행" },
+  { key: "24", name: "057: 제이피모간체이스은행" },
+  { key: "25", name: "058: 미스호은행" },
+  { key: "26", name: "059: 미쓰비도쿠UFJ은행" },
+  { key: "27", name: "060: BOA은행" },
+  { key: "28", name: "061: 비엔피파리바은행" },
+  { key: "29", name: "062: 중국공상은행" },
+  { key: "30", name: "063: 중국은행" },
+  { key: "31", name: "064: 산립조합중앙회" },
+  { key: "32", name: "065: 대화은행" },
+  { key: "33", name: "067: 중국건설은행" },
+  { key: "34", name: "071: 우체국" },
+  { key: "35", name: "076: 신용보증기금" },
+  { key: "36", name: "077: 신용보증기금" },
+  { key: "37", name: "081: KEB하나은행" },
+  { key: "38", name: "088: 신한은행" },
+  { key: "39", name: "089: 케이뱅크" },
+  { key: "40", name: "090: 카카오뱅크" },
+  { key: "41", name: "092: 토스뱅크" },
+  { key: "42", name: "093: 한국주택금융공사" },
+  { key: "43", name: "094: 서울보증보험" },
+  { key: "44", name: "209: 유안타증권" },
+  { key: "45", name: "218: KB증권" },
+  { key: "46", name: "221: 상상인증권" },
+  { key: "47", name: "223: 리딩투자증권" },
+  { key: "48", name: "271: 토스증권" },
+  { key: "49", name: "278: 신한금융투자" },
+  { key: "50", name: "279: DB금융투자" },
+  { key: "51", name: "280: 유진투자증권" },
+  { key: "52", name: "287: 메리츠종합금융증권" },
+  { key: "53", name: "288: 카카오페이증권" },
+  { key: "54", name: "289: NH투자증권" },
+  { key: "55", name: "290: 부국증권" },
+  { key: "56", name: "291: 신영증권" },
+  { key: "57", name: "292: 케이프투자증권" },
+  { key: "58", name: "294: 한국포스증권" },
 ];
 
 const location = [
@@ -89,95 +90,147 @@ const bankCategory = [
   { key: "7", name: "99: 현금" },
 ];
 
-export const NewInfo = ({ handleChildClick }) => {
-  const {
-    selectedBank,
-    selectedLocation,
-    selectedBankCategory,
-    bohoonNumber,
-    nameValue,
-    juminNumber,
-    basicAddress,
-    detailedAddress,
-    accountHolder,
-    accountNumber,
-    reason,
-    entryDate,
-    remarks,
-    setField,
-    addNewInfo
-  } = useInfoStore();
+export const NewInfo = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const [data, setData] = useState("");
 
-  const logInfoState = () => {
-    const { addNewInfo, setField, ...infoState } = useInfoStore.getState();
-    console.log(infoState);
-    handleChildClick();
+  const { mutate: postHonorRegistration } = usePostHonorRegistration();
+
+  const handleFormSubmit = (formData: HonorRegistrationRequest) => {
+    postHonorRegistration(formData);
+    console.log(formData);
+    reset();
   };
 
   return (
     <Container>
-      <Header>
-        <p>신규자 정보</p>
-        <AddButton onClick={logInfoState}>추가하기</AddButton>
-      </Header>
-      <Table>
-        <tbody>
-          <Row>
-            <Label>동명</Label>
-            <Dropdown
-              value={selectedLocation}
-              onChange={(e) => setField("selectedLocation", e.target.value)}
-            >
-              <option value="" disabled>동명을 선택하세요</option>
-              {location.map((loc) => (
-                <option value={loc.name} key={loc.name}>{loc.name}</option>
-              ))}
-            </Dropdown>
-          </Row>
-          <Row><Label>보훈번호</Label><Value value={bohoonNumber} placeholder="보훈번호를 입력하세요." onChange={(e) => setField("bohoonNumber", e.target.value)} /></Row>
-          <Row><Label>성명</Label><Value value={nameValue} placeholder="이름 입력하세요." onChange={(e) => setField("nameValue", e.target.value)} /></Row>
-          <Row><Label>주민번호</Label><Value value={juminNumber} placeholder="주민번호를 입력하세요." onChange={(e) => setField("juminNumber", e.target.value)} /></Row>
-          <Row><Label>기본 주소</Label><Value value={basicAddress} placeholder="기본 주소를 입력하세요." onChange={(e) => setField("basicAddress", e.target.value)} /></Row>
-          <Row><Label>상세 주소</Label><Value value={detailedAddress} placeholder="상세 주소를 입력하세요." onChange={(e) => setField("detailedAddress", e.target.value)} /></Row>
-          <Row>
-            <Label>입금유형</Label>
-            <Dropdown
-              value={selectedBankCategory}
-              onChange={(e) => setField("selectedBankCategory", e.target.value)}
-            >
-              <option value="" disabled>입금유형을 선택하세요</option>
-              {bankCategory.map((category) => (
-                <option value={category.name} key={category.key}>{category.name}</option>
-              ))}
-            </Dropdown>
-          </Row>
-          <Row>
-            <Label>은행명</Label>
-            <Dropdown
-              value={selectedBank}
-              onChange={(e) => setField("selectedBank", e.target.value)}
-            >
-              <option value="" disabled>은행을 선택하세요</option>
-              {banks.map((bank) => (
-                <option value={bank.code} key={bank.code}>{bank.code}: {bank.name}</option>
-              ))}
-            </Dropdown>
-          </Row>
-          <Row><Label>예금주</Label><Value value={accountHolder} placeholder="예금주를 입력하세요." onChange={(e) => setField("accountHolder", e.target.value)} /></Row>
-          <Row><Label>계좌번호</Label><Value value={accountNumber} placeholder="계좌번호를 입력하세요. (예: 7777021234567)" onChange={(e) => setField("accountNumber", e.target.value)} /></Row>
-          <Row><Label>신규 사유</Label><Value value={reason} placeholder="신규 사유를 입력하세요." onChange={(e) => setField("reason", e.target.value)} /></Row>
-          <Row><Label>전입일</Label><Value value={entryDate} placeholder="YYYYMMYY 형식으로 입력하세요" onChange={(e) => setField("entryDate", e.target.value)} /></Row>
-          <Row style={{ height: "100px" }}><Label>비고</Label><Value value={remarks} placeholder="자유롭게 입력하세요" onChange={(e) => setField("remarks", e.target.value)} /></Row>
-        </tbody>
-      </Table>
-    </Container >
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
+        <Header>
+          <p>신규자 정보</p>
+          <AddButton type='submit'>추가하기</AddButton>
+        </Header>
+        <Table>
+          <tbody>
+            <Row>
+              <Label>동명</Label>
+              <Dropdown {...register("dong_name", { required: true })}>
+                <option value='' disabled>
+                  동명을 선택하세요
+                </option>
+                {location.map(loc => (
+                  <option value={loc.name} key={loc.name}>
+                    {loc.name}
+                  </option>
+                ))}
+              </Dropdown>
+            </Row>
+            <Row>
+              <Label>보훈번호</Label>
+              <Value
+                {...register("honor_number", { required: true })}
+                placeholder='보훈번호를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>성명</Label>
+              <Value
+                {...register("name", { required: true })}
+                placeholder='이름 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>주민번호</Label>
+              <Value
+                {...register("resident_number", { required: true })}
+                placeholder='주민번호를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>기본 주소</Label>
+              <Value
+                {...register("address", { required: true })}
+                placeholder='기본 주소를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>상세 주소</Label>
+              <Value
+                {...register("detail_address", { required: true })}
+                placeholder='상세 주소를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>입금유형</Label>
+              <Dropdown {...register("deposit_type", { required: true })}>
+                <option value='' disabled>
+                  입금유형을 선택하세요
+                </option>
+                {bankCategory.map(category => (
+                  <option value={category.name} key={category.key}>
+                    {category.name}
+                  </option>
+                ))}
+              </Dropdown>
+            </Row>
+            <Row>
+              <Label>은행명</Label>
+              <Dropdown {...register("bank_list", { required: true })}>
+                <option value='' disabled>
+                  은행을 선택하세요
+                </option>
+                {banks.map(bank => (
+                  <option value={bank.name} key={bank.key}>
+                    {bank.name}
+                  </option>
+                ))}
+              </Dropdown>
+            </Row>
+            <Row>
+              <Label>예금주</Label>
+              <Value
+                {...register("depositor_name", { required: true })}
+                placeholder='예금주를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>계좌번호</Label>
+              <Value
+                {...register("account_number", { required: true })}
+                placeholder='계좌번호를 입력하세요. (예: 7777021234567)'
+              />
+            </Row>
+            <Row>
+              <Label>신규 사유</Label>
+              <Value
+                {...register("new_reason", { required: true })}
+                placeholder='신규 사유를 입력하세요.'
+              />
+            </Row>
+            <Row>
+              <Label>전입일</Label>
+              <Value
+                {...register("transfer_date", { required: true })}
+                placeholder='YYYYMMYY 형식으로 입력하세요'
+              />
+            </Row>
+            <Row style={{ height: "100px" }}>
+              <Label>비고</Label>
+              <Value
+                {...register("notes", { required: true })}
+                placeholder='자유롭게 입력하세요'
+              />
+            </Row>
+          </tbody>
+        </Table>
+      </form>
+    </Container>
   );
 };
 
 const Container = styled.div`
   width: 30%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: #f6f6f6;
   box-shadow: 3px 1px 2px rgba(0, 0, 0, 0.1);
   z-index: 999;
 `;
@@ -208,6 +261,7 @@ const AddButton = styled.button`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
+  background-color: #ffffff;
 `;
 
 const Row = styled.tr`

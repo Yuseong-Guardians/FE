@@ -13,7 +13,7 @@ export const FirstCard = () => {
       onClick={() => navigate("/newComer")}
     >
       <span>참전 명예</span>
-      <img src={isHovered ? AfterMainCard1 : MainCard1} alt="" />
+      <img src={isHovered ? AfterMainCard1 : MainCard1} alt='' />
     </Wrapper>
   );
 };
@@ -34,9 +34,8 @@ const Wrapper = styled.div`
   }
   &:hover > img {
     filter: drop-shadow(1px 1px 50px rgba(0, 146, 252, 0.4));
-
   }
   &:hover > span {
-    color: #2693E3;
+    color: #2693e3;
   }
 `;

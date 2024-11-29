@@ -4,5 +4,5 @@
     "jsx": "react",
     "esModuleInterop": true
   },
-  "include": [ "src", "src/custom.d.ts", "src/components/main/.tsx" ]
+  "include": ["src", "src/custom.d.ts", "src/components/main/.tsx"]
 }

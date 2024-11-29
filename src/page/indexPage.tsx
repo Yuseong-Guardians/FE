@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from "styled-components"
-import { FirstCard } from "components/main/firstCard"
-import { SecondCard } from 'components/main/secondCard';
-import { ThirdCard } from 'components/main/thirdCard';
+import React from "react";
+import styled from "styled-components";
+import { FirstCard } from "components/main/firstCard";
+import { SecondCard } from "components/main/secondCard";
+import { ThirdCard } from "components/main/thirdCard";
 
 export const IndexPage = () => {
   return (
@@ -10,8 +10,8 @@ export const IndexPage = () => {
       <FirstCard />
       <SecondCard />
       <ThirdCard />
-    </Container >
-  )
+    </Container>
+  );
 };
 
 const Container = styled.div`

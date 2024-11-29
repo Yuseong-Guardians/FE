@@ -18,7 +18,10 @@ export const StopperPage = () => {
           fontWeight: "400",
           padding: "14px",
           zIndex: "1",
-        }}>참전 명예 수당 지급 중지자</div>
+        }}
+      >
+        참전 명예 수당 지급 중지자
+      </div>
       <div style={{ display: "flex" }}>
         <StopperInfo />
         <BaseTable />

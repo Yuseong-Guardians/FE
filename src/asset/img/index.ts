@@ -7,4 +7,6 @@ export { default as AfterMainCard3 } from "./afterMainImg3.svg";
 export { default as BohoonSearchImg } from "./bohoonSearch.svg";
 export { default as EditIcon } from "./editIcon.svg";
 export { default as RefreshIcon } from "./refreshIcon.svg";
-export { default as CloseIcon} from "./closeIcon.svg";
+export { default as CloseIcon } from "./closeIcon.svg";
+export { default as SuccessIcon } from "./successIcon.svg";
+export { default as ErrorIcon } from "./errorIcon.svg";

@@ -1,25 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useGetHonor } from "apis";
 
-const data = [
-  {
-    no: 1,
-    selectedLocation: "노은 1동",
-    date: "2024.09.10",
-    bohoonNumber: "123",
-    name: "지도현",
-    juminNumber: "999999-9999999",
-    basicAddress: "11 11",
-    bankName: "002: 산업은행",
-    accountHolder: "123",
-    accountNumber: "계좌번호",
-    reason: "전입",
-    entryDate: "2001.01.01",
-    remarks: "자유롭게 입력",
-  }
-];
+// const data = [
+//   {
+//     no: 1,
+//     selectedLocation: "노은 1동",
+//     date: "2024.09.10",
+//     bohoonNumber: "123",
+//     name: "지도현",
+//     juminNumber: "999999-9999999",
+//     basicAddress: "11 11",
+//     bankName: "002: 산업은행",
+//     accountHolder: "123",
+//     accountNumber: "계좌번호",
+//     reason: "전입",
+//     entryDate: "2001.01.01",
+//     remarks: "자유롭게 입력",
+//   },
+// ];
 
 export const BaseTable = () => {
+  const { data: honorData, refetch } = useGetHonor();
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
     <TableContainer>
       <Table>
@@ -41,21 +48,21 @@ export const BaseTable = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, index) => (
+          {honorData?.map((data, index) => (
             <tr key={index}>
-              <Td>{row.no}</Td>
-              <Td>{row.selectedLocation}</Td>
-              <Td>{row.date}</Td>
-              <Td>{row.bohoonNumber}</Td>
-              <Td>{row.name}</Td>
-              <Td>{row.juminNumber}</Td>
-              <Td>{row.basicAddress}</Td>
-              <Td>{row.bankName}</Td>
-              <Td>{row.accountHolder}</Td>
-              <Td>{row.accountNumber}</Td>
-              <Td>{row.reason}</Td>
-              <Td>{row.entryDate}</Td>
-              <Td style={{ width: "20%", textAlign: "start" }}>{row.remarks}</Td>
+              <Td>{index}</Td>
+              <Td>{data.dong_name}</Td>
+              <Td>{data.transfer_date}</Td>
+              <Td>{data.honor_number}</Td>
+              <Td>{data.name}</Td>
+              <Td>{data.resident_number}</Td>
+              <Td>{data.deposit_type}</Td>
+              <Td>{data.bank_list}</Td>
+              <Td>{data.depositor_name}</Td>
+              <Td>{data.account_number}</Td>
+              <Td>{data.new_reason}</Td>
+              <Td>{data.transfer_date}</Td>
+              <Td style={{ width: "20%", textAlign: "start" }}>{data.notes}</Td>
             </tr>
           ))}
         </tbody>
@@ -81,9 +88,10 @@ const Table = styled.table`
 const Th = styled.th`
   padding: 10px;
   background-color: #f4f4f4;
-  color: #706F6F;
+  color: #706f6f;
   border: 1px solid #dadada;
   font-weight: 500;
+  cursor: pointer;
 `;
 
 const Td = styled.td`

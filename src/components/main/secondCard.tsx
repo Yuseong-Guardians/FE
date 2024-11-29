@@ -8,9 +8,10 @@ export const SecondCard = () => {
   return (
     <Wrapper
       onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}>
+      onMouseLeave={() => setIsHover(false)}
+    >
       <span>보훈 예우</span>
-      <img src={isHover ? AfterMainCard2 : MainCard2} alt="" />
+      <img src={isHover ? AfterMainCard2 : MainCard2} alt='' />
     </Wrapper>
   );
 };
@@ -39,6 +40,6 @@ const Wrapper = styled.div`
     filter: drop-shadow(1px 1px 50px rgba(0, 146, 252, 0.4));
   }
   &:hover > span {
-    color: #2693E3;
+    color: #2693e3;
   }
 `;

@@ -6,10 +6,15 @@ export const ThirdCard = () => {
   const [isHover, setIsHover] = useState(false);
   return (
     <Wrapper
-      onMouseEnter={() => { setIsHover(true) }}
-      onMouseLeave={() => { setIsHover(false) }}>
+      onMouseEnter={() => {
+        setIsHover(true);
+      }}
+      onMouseLeave={() => {
+        setIsHover(false);
+      }}
+    >
       <span>참전 명예 배우자</span>
-      <img src={isHover ? AfterMainCard3 : MainCard3} alt="" />
+      <img src={isHover ? AfterMainCard3 : MainCard3} alt='' />
     </Wrapper>
   );
 };
@@ -38,6 +43,6 @@ const Wrapper = styled.div`
     filter: drop-shadow(1px 1px 50px rgba(0, 146, 252, 0.4));
   }
   &:hover > span {
-    color: #2693E3;
+    color: #2693e3;
   }
 `;

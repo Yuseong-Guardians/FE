@@ -7,16 +7,16 @@ export const StopperInfo = () => {
     <Container>
       <BohoonSearch>
         <span>보훈 번호</span>
-        <input type="text" />
-        <img src={BohoonSearchImg} alt="" />
+        <input type='text' />
+        <img src={BohoonSearchImg} alt='' />
       </BohoonSearch>
       <MainWrapper>
         <SearchResult>
           <p>검색 결과</p>
           <div>
-            <img src={RefreshIcon} alt="" />
-            <img src={EditIcon} alt="" />
-            <img src={CloseIcon} alt="" />
+            <img src={RefreshIcon} alt='' />
+            <img src={EditIcon} alt='' />
+            <img src={CloseIcon} alt='' />
           </div>
         </SearchResult>
         <Table>
@@ -66,11 +66,10 @@ const Container = styled.div`
   width: 37%;
   height: 100vh;
   background-color: #f6f6f6;
-  border: 1px solid #B2B2B2;
+  border: 1px solid #b2b2b2;
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.2);
   z-index: 1;
 `;
-
 
 const BohoonSearch = styled.div`
   width: 100%;
@@ -79,7 +78,7 @@ const BohoonSearch = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #007EFC;
+  color: #007efc;
   gap: 10px;
   & > input {
     width: 75%;
@@ -92,9 +91,7 @@ const BohoonSearch = styled.div`
   }
 `;
 
-const MainWrapper = styled.div`
-  
-`;
+const MainWrapper = styled.div``;
 
 const SearchResult = styled.div`
   display: flex;
@@ -120,7 +117,7 @@ const Table = styled.div`
   border-collapse: collapse;
   font-size: 16px;
   color: #333;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
 `;
 
 const TableRow = styled.div`
@@ -132,7 +129,7 @@ const TableHeader = styled.div`
   width: 20%;
   background-color: #f4f4f4;
   color: #333;
-  background-color: #ECECEC;
+  background-color: #ececec;
   padding: 13px;
   text-align: left;
   border-right: 1px solid #ddd;
